@@ -13,6 +13,11 @@ export default function Login() {
 
   if (user) return <Redirect href="/home" />
 
+  function fillTestCredentials() {
+    setEmail('jimmuell@aol.com')
+    setPassword('12345678')
+  }
+
   async function onLogin() {
     if (!email || !password) {
       Alert.alert('Missing info', 'Please enter email and password.')
@@ -34,6 +39,9 @@ export default function Login() {
       <Text style={{ fontSize: 22, fontWeight: '700', textAlign: 'center', marginBottom: 20 }}>Sign in</Text>
       <TextInputField label="Email" autoCapitalize="none" keyboardType="email-address" value={email} onChangeText={setEmail} />
       <TextInputField label="Password" secureTextEntry value={password} onChangeText={setPassword} />
+      <TouchableOpacity onPress={fillTestCredentials} style={{ backgroundColor: '#007AFF', padding: 12, borderRadius: 8, marginTop: 4, marginBottom: 8 }}>
+        <Text style={{ color: '#fff', textAlign: 'center', fontWeight: '600' }}>Use Test Credentials</Text>
+      </TouchableOpacity>
       <TouchableOpacity onPress={onLogin} disabled={loading} style={{ backgroundColor: '#222', padding: 14, borderRadius: 8, marginTop: 4 }}>
         <Text style={{ color: '#fff', textAlign: 'center', fontWeight: '600' }}>{loading ? 'Signing in…' : 'Sign in'}</Text>
       </TouchableOpacity>
